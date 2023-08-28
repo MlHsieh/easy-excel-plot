@@ -17,7 +17,8 @@ Sub SelectRange(rangeName As String)
     Set selected = Application.InputBox(Prompt:="Select data", Type:=8, _
         Default:=Selection.Address)
     If Not selected Is Nothing Then
-        selected.Worksheet.Names.Add name:=rangeName, RefersTo:=selected
+        selected.Worksheet.Names.Add Name:=rangeName, RefersTo:=selected
+        ThisWorkbook.Names("'" & selected.Worksheet.Name & "'!" & rangeName).Visible = False
     End If
 End Sub
 
@@ -27,7 +28,7 @@ End Sub
 
 Sub ClearRange(rangeName As String)
     On Error Resume Next
-    ActiveSheet.Names("'" & ActiveSheet.name & "'!" & name2).Delete
+    ActiveSheet.Names("'" & ActiveSheet.Name & "'!" & name2).Delete
 End Sub
 
 Sub Plot()
@@ -36,13 +37,13 @@ Sub Plot()
        
     MLEvalString "clear variables"
     
-    MLPutMatrix name1, Range("'" & ActiveSheet.name & "'!" & name1)
+    MLPutMatrix name1, Range("'" & ActiveSheet.Name & "'!" & name1)
     
     On Error Resume Next
-    MLPutMatrix name2, Range("'" & ActiveSheet.name & "'!" & name2)
+    MLPutMatrix name2, Range("'" & ActiveSheet.Name & "'!" & name2)
     
     For Each n In GetNames()
-        nameStr = "'" & ActiveSheet.name & "'!" & n
+        nameStr = "'" & ActiveSheet.Name & "'!" & n
         MLPutMatrix n, Range(nameStr)
     Next n
     
