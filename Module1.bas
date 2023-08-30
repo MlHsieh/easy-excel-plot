@@ -13,13 +13,21 @@ End Sub
 
 Sub SelectRange(rangeName As String)
     Dim selected As Range
+    Dim lastRow As Integer
+    
     On Error Resume Next
     Set selected = Application.InputBox(Prompt:="Select data", Type:=8, _
         Default:=Selection.Address)
-    If Not selected Is Nothing Then
-        selected.Worksheet.Names.Add Name:=rangeName, RefersTo:=selected
-        ThisWorkbook.Names("'" & selected.Worksheet.Name & "'!" & rangeName).Visible = False
-    End If
+    With selected
+        If Not selected Is Nothing Then
+            If .Address = .EntireColumn.Address Then
+                lastRow = .Find("*", SearchOrder:=xlByRows, SearchDirection:=xlPrevious).Row
+                Set selected = .Resize(lastRow)
+            End If
+            .Worksheet.Names.Add Name:=rangeName, RefersTo:=selected
+            ThisWorkbook.Names("'" & .Worksheet.Name & "'!" & rangeName).Visible = False
+        End If
+    End With
 End Sub
 
 Sub OnClickClear2()
@@ -28,7 +36,7 @@ End Sub
 
 Sub ClearRange(rangeName As String)
     On Error Resume Next
-    ActiveSheet.Names("'" & ActiveSheet.Name & "'!" & name2).Delete
+    ActiveSheet.Names("'" & ActiveSheet.Name & "'!" & rangeName).Delete
 End Sub
 
 Sub Plot()
@@ -54,3 +62,15 @@ End Sub
 Function GetNames()
     GetNames = Array("optionName1", "optionVal1", "optionName2", "optionVal2")
 End Function
+
+Sub Test()
+    Dim lastRow As Integer
+    Dim selected As Range
+    Set selected = Selection
+    With Selection
+        If .Address = .EntireColumn.Address Then
+            lastRow = .Find("*", SearchOrder:=xlByRows, SearchDirection:=xlPrevious).Row
+            selected.Resize(lastRow).Select
+        End If
+    End With
+End Sub
