@@ -75,6 +75,10 @@ Function GetNames()
     GetNames = Array("optionName1", "optionVal1", "optionName2", "optionVal2")
 End Function
 
+Sub ToggleGroupboxVisibility()
+    ActiveSheet.GroupBoxes.Visible = Not ActiveSheet.GroupBoxes.Visible
+End Sub
+
 Sub Test()
     Dim lastRow As Integer
     Dim selected As Range

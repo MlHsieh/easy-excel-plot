@@ -1,5 +1,7 @@
 # Easy MATLAB Plot with Excel
 
+Version 1.1 is now out.
+
 Plot data in a Excel file with MATLAB featuring:
 
 - Easy plotting by pasting data into Excel spreadsheet and clicking buttons
@@ -9,7 +11,7 @@ Plot data in a Excel file with MATLAB featuring:
 
 ## How to use
 
-1. Download release v1.0 from [here](https://github.com/MlHsieh/easy-excel-plot/releases).
+1. Download the latest version from [here](https://github.com/MlHsieh/easy-excel-plot/releases).
 2. Install and setup Spreadsheet Link, see instructions [below](#install-and-setup-spreadsheet-link-toolbox).
 3. Unzip the file and open `Plot.xlsm`.
 4. Follow the steps in `Plot.xlsm`.
@@ -34,27 +36,27 @@ Plot data in a Excel file with MATLAB featuring:
 <img title="" src="assets/add-in.png" alt="" width="395"> <img title="" src="assets/preference.png" alt="" width="200">
 
 4. Modify following settings:
-   
+
    1. Change "**MATLAB startup folder**" to where `PlotColumns.m` is located.
-   
+
    2. Enable "**Treat missing/empty cells as NaN**", as shown above.
-   
+
    3. Optional settings:
-      
+
       - **Start MATLAB at Excel start up**:
         Kind of annoying. I recommend disable this option. However, if this option is disabled, you must **start MATLAB manually in Excel** before plotting. MATLAB sessions not launched by Excel cannot be used to run macro with Spreadsheet Link. To start MATLAB manually: Click **MATLAB** group on the top right of the **Home** tab in your Excel worksheet and click **Start MATLAB**.
-      
+
       - **MATLAB program id**:
         Specifies the MATLAB version to open when Spreadsheet Link starts in Microsoft Excel.
-      
+
       - **Use MATLAB desktop**:
         Launch MATLAB with full gui or command line only, default is command line only.
-      
+
       - **Force use of MATLAB cell arrays with MLPutMatrix**:
         DO NOT enable this option. It might cause some trouble if your data have no headings.
 
 5. You might need to update the references in `Plot.xslm`:
-   
+
    1. Open `Plot.xslm` with Microsoft Excel
    2. open the Visual Basic® Editor window by clicking **Visual Basic** on the **Developer** tab. (If you do not find the **Developer** tab, see the Excel Help.)
    3. In the left pane, select a module for which you want to update a
