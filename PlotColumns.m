@@ -127,11 +127,13 @@ arguments
 end
 
 % Generate headers
-if iscell(p_data)
+default_header = cellstr("data " + string(1:size(p_data, 2)-1));
+if iscell(p_data)                       % p_data contains string
     p_header = p_data(1, 2:end);
     p_data = cell2mat(p_data(2:end, :));
+    p_header(~cellfun(@istext, p_header)) = default_header(~cellfun(@istext, p_header));
 else
-    p_header = cellstr("data " + string(1:size(p_data, 2)-1));
+    p_header = default_header;
 end
 
 % plot
@@ -157,6 +159,12 @@ if (isa(p_axis, "char") || isa(p_axis, "string"))
     axis(p_axis{:})
 end
 
+end
+
+function output = istext(S)
+% istext Determine whether input is text
+% iscellstr(S) returns 1 if S is text and 0 otherwise.
+output = isstring(S) || ischar(S)|| iscellstr(S);
 end
 
 % callback function
